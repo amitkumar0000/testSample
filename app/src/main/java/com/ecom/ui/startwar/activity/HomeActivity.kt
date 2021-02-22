@@ -23,7 +23,7 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(this@HomeActivity))))) as T
+                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(this@HomeActivity.applicationContext))))) as T
             }
         }).get(PointTableViewModel::class.java)
     }

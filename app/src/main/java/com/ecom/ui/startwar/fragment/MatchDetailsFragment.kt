@@ -28,7 +28,7 @@ class MatchDetailsFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(requireContext()))))) as T
+                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(requireContext().applicationContext))))) as T
             }
         }).get(PointTableViewModel::class.java)
     }

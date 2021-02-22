@@ -22,12 +22,6 @@ class LocalJson(val context: Context) {
         return Single.just(list)
     }
 
-    private fun getStarWarPlayer(context: Context, fileName: String): JSONArray {
-        val json = Utils.loadFromJson(context, fileName)
-        return json
-    }
-
-
     fun fetchMatchTableDetails(playerList: List<Player>): Single<List<Player>> {
         val jsonObject: JSONArray = Utils.loadFromJson(context, "StarWarsMatches.json")
 
