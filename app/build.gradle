@@ -86,6 +86,9 @@ dependencies {
     testImplementation  libraries.mockitoInline
     testImplementation  libraries.mockitoKotlin
 
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+
     implementation project("::apis")
     implementation project("::networking")
     implementation "androidx.core:core-ktx:+"

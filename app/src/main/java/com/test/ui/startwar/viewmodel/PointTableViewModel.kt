@@ -1,6 +1,7 @@
 package com.test.ui.startwar.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.test.ui.startwar.models.Player
 import com.test.ui.startwar.models.PointTableFeedState
 import com.test.ui.startwar.repository.PointTableRepository
 import io.reactivex.Observable
@@ -22,6 +23,7 @@ class PointTableViewModel(private val respository: PointTableRepository): ViewMo
         state.onNext(PointTableFeedState.Loading)
         disposable.add(
             respository.fetchPointsDetails()
+                .flatMap { respository.fetchMatchDetails(it) }
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     state.onNext(PointTableFeedState.Content(it))

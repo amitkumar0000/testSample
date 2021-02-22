@@ -9,18 +9,21 @@ import com.bumptech.glide.Glide
 import com.test.ui.databinding.PointRowBinding
 import com.test.ui.startwar.activity.MatchDetailsActivity
 import com.test.ui.startwar.models.Player
+import com.test.ui.startwar.utils.Utils
+import com.test.ui.startwar.utils.Utils.playerList
 import com.test.ui.startwar.viewholder.PointTableViewHolder
 
 internal class PointsTableAdapter: RecyclerView.Adapter<PointTableViewHolder>() {
 
-    private val playerList = arrayListOf<Player>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PointTableViewHolder {
         return PointTableViewHolder(PointRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: PointTableViewHolder, position: Int) {
-        playerList[position].apply {
-            Glide.with(holder.icon).load(icon)
+        Utils.playerList[position].apply {
+            Glide.with(holder.icon.context)
+                .load(icon)
+                .into(holder.icon)
             holder.name.text =  name
             holder.scoreTextView.text = "$score"
 
@@ -41,6 +44,8 @@ internal class PointsTableAdapter: RecyclerView.Adapter<PointTableViewHolder>() 
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         playerList.clear()
         playerList.addAll(newplayerlist)
+        playerList.sortBy { it.score }
         diffResult.dispatchUpdatesTo(this)
+
     }
 }

@@ -11,8 +11,16 @@ class PointTableRepository(private val manager: PointTableManager) {
         return manager.fetchDetails()
     }
 
+    fun fetchMatchDetailsList(id: Int): Single<List<MatchDetails>> {
+        return manager.fetchMatchDetailsList(id)
+    }
+
     fun fetchPointsDetails(id: Int): Single<List<MatchDetails>> {
-        return manager.fetchMatchDetails(id)
+        return manager.fetchMatchDetails()
+    }
+
+    fun fetchMatchDetails(playerList: List<Player>): Single<List<Player>> {
+        return manager.fetchMatchDetailsScore(playerList)
     }
 
 

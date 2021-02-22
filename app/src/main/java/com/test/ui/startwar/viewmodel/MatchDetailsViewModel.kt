@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.test.ui.startwar.models.MatchDetailsFeedState
 import com.test.ui.startwar.models.PointTableFeedState
 import com.test.ui.startwar.repository.PointTableRepository
+import com.test.ui.startwar.utils.Utils
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -19,10 +20,11 @@ class MatchDetailsViewModel(private val respository: PointTableRepository): View
         return state.hide()
     }
 
+
     fun fetchMatchDetails(id: Int) {
         state.onNext(MatchDetailsFeedState.Loading)
         disposable.add(
-            respository.fetchPointsDetails(id)
+            respository.fetchMatchDetailsList(id)
                 .subscribeOn(Schedulers.io())
                 .subscribe({
                     state.onNext(MatchDetailsFeedState.Content(it))

@@ -23,7 +23,7 @@ class MatchDetailsActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MatchDetailsViewModel(PointTableRepository((PointTableManager(LocalJson())))) as T
+                return MatchDetailsViewModel(PointTableRepository((PointTableManager(LocalJson(this@MatchDetailsActivity))))) as T
             }
         }).get(MatchDetailsViewModel::class.java)
     }
