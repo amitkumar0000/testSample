@@ -9,6 +9,7 @@ import okio.buffer
 import okio.source
 import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.IllegalStateException
 import java.lang.reflect.Type
 
 
@@ -21,6 +22,15 @@ object Utils {
             inputStream.source().buffer().readUtf8()
         }
 
+    }
+
+    fun findPlayer(id: Int): Player {
+        playerList.forEach {
+            if(id == it.id)
+                return it
+        }
+
+        throw IllegalStateException("Player id does'nt exit")
     }
 
     fun loadFromJson(context: Context, filename: String): JSONArray {

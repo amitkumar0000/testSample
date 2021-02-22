@@ -44,7 +44,7 @@ internal class PointsTableAdapter: RecyclerView.Adapter<PointTableViewHolder>() 
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         playerList.clear()
         playerList.addAll(newplayerlist)
-        playerList.sortBy { it.score }
+        playerList.sortByDescending { it.score }
         diffResult.dispatchUpdatesTo(this)
 
     }

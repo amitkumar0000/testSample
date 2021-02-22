@@ -70,8 +70,6 @@ class LocalJson(val context: Context) {
             map[player2.id] = player2
         }
 
-        val list = map.values.toList()
-
         return Single.just(map.values.toList())
     }
 }

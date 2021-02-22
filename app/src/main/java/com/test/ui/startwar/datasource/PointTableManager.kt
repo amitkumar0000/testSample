@@ -12,7 +12,7 @@ class PointTableManager(private val ljson: LocalJson) {
     }
 
     fun fetchMatchDetailsList(id: Int): Single<List<MatchDetails>> {
-        return Single.just(Utils.playerList[id].matchList)
+        return Single.just(Utils.findPlayer(id).matchList)
     }
 
     fun fetchMatchDetails(): Single<List<MatchDetails>> {
