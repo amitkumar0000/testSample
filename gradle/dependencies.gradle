@@ -1,0 +1,125 @@
+ext.versions = [
+        compileSdk                     : 30,
+        minSdk                         : 21,
+        targetSdk                     :  30,
+        annotationService              : "1.0-rc4",
+        appcompat                      : "1.2.0",
+        arch                           : "2.1.0",
+        constraintLayout               : "2.0.4",
+        contribTest                    : "3.1.0-alpha4",
+        coroutine                      : "1.3.9",
+        dagger                         : "2.29.1",
+        espresso                       : "3.3.0",
+        fragment_version               : "1.2.5",
+        glide                          : '4.10.0',
+        hilt                           : "2.28-alpha",
+        mockito                        : '3.3.3',
+        hiltCompiler                   : "1.0.0",
+        junit                          : "1.1.2" ,
+        lifecycle                      : "2.2.0",
+        ktxcore                        : "1.3.2",
+        materialDesign                 : "1.2.1",
+        moshi                          : "1.11.0",
+        okHttp                         : "4.9.0",
+        retrofit                       : "2.9.0",
+        room                           : "2.2.5",
+        rxAndroid2                     : "2.1.1",
+        rxjava2                        : "2.2.19",
+        ktx                            : "2.2.0",
+]
+
+ext.libraries = [
+        jetbrains               : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+
+        // Android Architecture Components
+        androidXAppCompat        : "androidx.appcompat:appcompat:1.1.0",
+        androidArch              : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
+        androidArchViewModel     : "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycle",
+        androidArchViewModel     : "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycle",
+        androidArchRuntime       : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle",
+        androidArchCommon        : "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle",
+        androidArchTest          : "androidx.arch.core:core-testing:$versions.arch",
+
+        // Tesing
+        androidxContrib          : "androidx.test.espresso:espresso-contrib:$versions.contribTest",
+        androidxTestRunner       : "androidx.test:runner:1.2.0",
+        androidxTestRule       : "androidx.test:rules:1.1.1",
+
+        // Mockito
+        mockitoAndroid           : "org.mockito:mockito-android:$versions.mockito",
+        mockito                  : "org.mockito:mockito-core:$versions.mockito",
+        mockitoInline            : "org.mockito:mockito-inline:$versions.mockito",
+        mockitoKotlin            : "com.nhaarman:mockito-kotlin:1.5.0",
+        mockitoKotlin2           : "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0",
+
+        // AndroidX
+        androidXFragment         : "androidx.fragment:fragment:1.1.0",
+
+        // RecyclerView
+        flexbox                  : "com.google.android:flexbox:1.0.0",
+
+
+
+        // androidx library
+        ktxcore                  : "androidx.core:core-ktx:$versions.ktxcore",
+        appcompat                : "androidx.appcompat:appcompat:$versions.appcompat",
+        materialDesign           : "com.google.android.material:material:$versions.materialDesign",
+        constraintLayout         : "androidx.constraintlayout:constraintlayout:$versions.constraintLayout",
+
+        // Dependency Injection
+        hiltCore                :  "com.google.dagger:hilt-core:$versions.dagger-alpha",
+        hiltAndroid             :  "com.google.dagger:hilt-android:$versions.dagger-alpha",
+        hiltDaggerCompiler      :  "com.google.dagger:hilt-android-compiler:$versions.dagger-alpha",
+        hiltViewModel           :  "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hiltCompiler-alpha02",
+        hiltCompiler            :  "androidx.hilt:hilt-compiler:$versions.hiltCompiler-alpha02",
+
+        // networking
+        moshi                    : "com.squareup.moshi:moshi:$versions.moshi",
+        moshiKotlinCodeGen       : "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi",
+        moshiKotlinReflection    : "com.squareup.moshi:moshi-kotlin:$versions.moshi",
+        moshiAdapters            : "com.squareup.moshi:moshi-adapters:$versions.moshi",
+        moshiRetrofitAdapter     : "com.squareup.retrofit2:converter-moshi:$versions.retrofit",
+        mockwebserver            : "com.squareup.okhttp3:mockwebserver:$versions.okHttp",
+        okHttp                   : "com.squareup.okhttp3:okhttp:$versions.okHttp",
+        okHttpLogInterceptor     : "com.squareup.okhttp3:logging-interceptor:$versions.okHttp",
+        okio                     : "com.squareup.okio:okio:2.9.0",
+
+        // LifeCycle
+        lifecycle               : "",
+
+        // Annotation
+        annotationService       : "com.google.auto.service:auto-service:$versions.annotationService",
+
+        retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitRx2Adapter      : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+
+        // RxJava2
+        rxjava2                 : "io.reactivex.rxjava2:rxjava:$versions.rxjava2",
+        rxAndroid2              : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid2",
+
+        // coroutines
+        coroutine               : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine",
+        viewModelKtx            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.ktx",
+        lifecyclektx            : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.ktx",
+        livedataktx             : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.ktx",
+
+        // Utilities
+        circularImageView       : "com.mikhaellopez:circularimageview:4.2.0",
+
+        // Image Processing
+        glide                    : "com.github.bumptech.glide:glide:$versions.glide",
+        glideOkHttp              : "com.github.bumptech.glide:okhttp3-integration:$versions.glide",
+
+        // Room DB
+        room                     : "androidx.room:room-runtime:$versions.room",
+        roomKtx                  : "androidx.room:room-ktx:$versions.room",
+        roomCompiler             : "androidx.room:room-compiler:$versions.room",
+        roomRx                   : "androidx.room:room-rxjava2:$versions.room",
+        roomTest                 : "androidx.room:room-testing:$versions.room",
+
+        // Testing
+        junit                   : "androidx.test.ext:junit:$versions.junit",
+        espresso                : "androidx.test.espresso:espresso-core:$versions.espresso",
+        fragmentTesting         :"androidx.fragment:fragment-testing:$versions.fragment_version",
+]

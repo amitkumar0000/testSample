@@ -1,0 +1,4 @@
+include ':apis'
+include ':networking'
+include ':app'
+rootProject.name = "TestApp"

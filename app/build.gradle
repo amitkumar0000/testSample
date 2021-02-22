@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android'
+apply plugin: 'dagger.hilt.android.plugin'
+
+apply from: "$rootDir/gradle/dependencies.gradle"
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.test.ui"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation libraries.jetbrains
+    implementation libraries.ktxcore
+    implementation libraries.appcompat
+    implementation libraries.materialDesign
+    implementation libraries.constraintLayout
+
+    // Android Architecture Components
+    implementation libraries.androidArchCommon
+    implementation libraries.androidArchViewModel
+    implementation libraries.androidArchRuntime
+    implementation libraries.androidArchCommon
+    implementation libraries.androidArchTest
+
+    // Dependency Injection
+    implementation libraries.hiltAndroid
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt    libraries.hiltDaggerCompiler
+    implementation libraries.hiltViewModel
+    kapt libraries.hiltCompiler
+
+    // RxJava2
+    implementation libraries.rxjava2
+    implementation libraries.rxAndroid2
+
+    // glide
+    implementation libraries.glide
+
+    //Testing
+    androidTestImplementation libraries.junit
+    androidTestImplementation libraries.espresso
+    androidTestImplementation libraries.androidxContrib
+    implementation libraries.androidArchTest
+    androidTestImplementation libraries.androidxTestRunner
+    androidTestImplementation libraries.androidxTestRule
+
+    implementation libraries.androidXFragment
+    debugImplementation (libraries.fragmentTesting) {
+        exclude group: 'androidx.test', module: 'core'
+    }
+
+    //Mockito
+    testImplementation  libraries.mockitoInline
+    testImplementation  libraries.mockitoKotlin
+
+    implementation project("::apis")
+    implementation project("::networking")
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
