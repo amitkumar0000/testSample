@@ -32,6 +32,10 @@ class PointTableViewModel(private val respository: PointTableRepository): ViewMo
         )
     }
 
+    fun attachMatchDetailFragment(id: Int) {
+        state.onNext(PointTableFeedState.LoadMatchDetails(id))
+    }
+
     override fun onCleared() {
         super.onCleared()
         disposable.clear()

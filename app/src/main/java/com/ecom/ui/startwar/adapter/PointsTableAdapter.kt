@@ -1,19 +1,18 @@
 package com.ecom.ui.startwar.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ecom.ui.databinding.PointRowBinding
-import com.ecom.ui.startwar.activity.MatchDetailsActivity
 import com.ecom.ui.startwar.models.Player
 import com.ecom.ui.startwar.utils.Utils
 import com.ecom.ui.startwar.utils.Utils.playerList
 import com.ecom.ui.startwar.viewholder.PointTableViewHolder
+import com.ecom.ui.startwar.viewmodel.PointTableViewModel
 
-internal class PointsTableAdapter: RecyclerView.Adapter<PointTableViewHolder>() {
+internal class PointsTableAdapter(private val viewModel: PointTableViewModel): RecyclerView.Adapter<PointTableViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PointTableViewHolder {
         return PointTableViewHolder(PointRowBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -28,9 +27,7 @@ internal class PointsTableAdapter: RecyclerView.Adapter<PointTableViewHolder>() 
             holder.scoreTextView.text = "$score"
 
             holder.name.setOnClickListener {
-                it.context.startActivity(Intent(it.context, MatchDetailsActivity::class.java).apply {
-                    putExtra("Player_id", id)
-                })
+                viewModel.attachMatchDetailFragment(id)
             }
         }
     }

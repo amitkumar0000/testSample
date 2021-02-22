@@ -1,12 +1,14 @@
-package com.ecom.ui.startwar.activity
+package com.ecom.ui.startwar.fragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ecom.ui.databinding.ActivityMainBinding
+import com.ecom.ui.databinding.FragmentPointTableBinding
 import com.ecom.ui.startwar.adapter.PointsTableAdapter
 import com.ecom.ui.startwar.datasource.LocalJson
 import com.ecom.ui.startwar.datasource.PointTableManager
@@ -15,35 +17,41 @@ import com.ecom.ui.startwar.repository.PointTableRepository
 import com.ecom.ui.startwar.viewmodel.PointTableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class StarWarPointsTableActivity : AppCompatActivity() {
+class PointTableFragment : Fragment() {
+    private lateinit var binding: FragmentPointTableBinding
 
-    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(LayoutInflater.from(this)) }
-    private val pointTableAdapter by lazy { PointsTableAdapter() }
 
     private val viewModel by lazy {
-        ViewModelProvider(this, object : ViewModelProvider.Factory{
+        ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(this@StarWarPointsTableActivity))))) as T
+                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(requireContext()))))) as T
             }
         }).get(PointTableViewModel::class.java)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+    private val pointTableAdapter by lazy { PointsTableAdapter(viewModel) }
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        binding = FragmentPointTableBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initPointsList()
         attachPointTableObserver()
         viewModel.fetchPointTableDetails()
-
     }
 
     private fun attachPointTableObserver() {
         viewModel.state()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                     render(it)
-            },{})
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    render(it)
+                },{})
     }
 
     private fun render(pointTableFeedState: PointTableFeedState) {
@@ -57,7 +65,13 @@ class StarWarPointsTableActivity : AppCompatActivity() {
     }
 
     private fun initPointsList() {
-        binding.pointList.layoutManager = LinearLayoutManager(this)
+        binding.pointList.layoutManager = LinearLayoutManager(requireContext())
         binding.pointList.adapter = pointTableAdapter
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() =
+                PointTableFragment()
     }
 }

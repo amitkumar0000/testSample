@@ -4,23 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".startwar.activity.StarWarPointsTableActivity">
+    tools:context=".startwar.activity.HomeActivity">
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pointTableHeadline"
-        android:text="Points Table"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="8dp"
+        android:layout_height="match_parent"
+        android:id="@+id/container"
         />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:id="@+id/pointList"
-        app:layout_constraintTop_toBottomOf="@id/pointTableHeadline"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

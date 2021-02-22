@@ -1,12 +1,15 @@
-package com.ecom.ui.startwar.activity
+package com.ecom.ui.startwar.fragment
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ecom.ui.databinding.ActivityMatchDetailsBinding
+import com.ecom.ui.R
+import com.ecom.ui.databinding.FragmentMatchDetailsBinding
 import com.ecom.ui.startwar.adapter.MatchDetailsAdapter
 import com.ecom.ui.startwar.datasource.LocalJson
 import com.ecom.ui.startwar.datasource.PointTableManager
@@ -15,30 +18,35 @@ import com.ecom.ui.startwar.repository.PointTableRepository
 import com.ecom.ui.startwar.viewmodel.MatchDetailsViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class MatchDetailsActivity : AppCompatActivity() {
+private const val ARG_ID = "ID"
 
-    private val binding: ActivityMatchDetailsBinding by lazy { ActivityMatchDetailsBinding.inflate(LayoutInflater.from(this)) }
+class MatchDetailsFragment : Fragment() {
+    private var playerId: Int? = null
+    private lateinit var binding: FragmentMatchDetailsBinding
+
     private val matchDetailsAdapter by lazy { MatchDetailsAdapter() }
 
     private val viewModel by lazy {
         ViewModelProvider(this, object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MatchDetailsViewModel(PointTableRepository((PointTableManager(LocalJson(this@MatchDetailsActivity))))) as T
+                return MatchDetailsViewModel(PointTableRepository((PointTableManager(LocalJson(requireContext()))))) as T
             }
         }).get(MatchDetailsViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        arguments?.let {
+            playerId = it.getInt(ARG_ID)
+        }
+    }
 
-        val playerId = intent.getIntExtra("Player_id", -1)
-
-        if(playerId != -1) {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        playerId?.let {
             initMatchDetailsList()
             attachMatchDetailsObserver()
-            viewModel.fetchMatchDetails(id = playerId)
+            viewModel.fetchMatchDetails(id = it)
         }
     }
 
@@ -61,7 +69,26 @@ class MatchDetailsActivity : AppCompatActivity() {
     }
 
     private fun initMatchDetailsList() {
-        binding.matchDetailsList.layoutManager = LinearLayoutManager(this)
+        binding.matchDetailsList.layoutManager = LinearLayoutManager(requireContext())
         binding.matchDetailsList.adapter = matchDetailsAdapter
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentMatchDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(id: Int) =
+            MatchDetailsFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_ID, id)
+                }
+            }
     }
 }
