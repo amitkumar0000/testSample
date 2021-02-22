@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ecom.ui.R
 import com.ecom.ui.databinding.FragmentMatchDetailsBinding
 import com.ecom.ui.startwar.adapter.MatchDetailsAdapter
 import com.ecom.ui.startwar.datasource.LocalJson
 import com.ecom.ui.startwar.datasource.PointTableManager
 import com.ecom.ui.startwar.models.MatchDetailsFeedState
 import com.ecom.ui.startwar.repository.PointTableRepository
-import com.ecom.ui.startwar.viewmodel.MatchDetailsViewModel
+import com.ecom.ui.startwar.viewmodel.PointTableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 private const val ARG_ID = "ID"
@@ -27,11 +26,11 @@ class MatchDetailsFragment : Fragment() {
     private val matchDetailsAdapter by lazy { MatchDetailsAdapter() }
 
     private val viewModel by lazy {
-        ViewModelProvider(this, object : ViewModelProvider.Factory{
+        ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory{
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return MatchDetailsViewModel(PointTableRepository((PointTableManager(LocalJson(requireContext()))))) as T
+                return PointTableViewModel(PointTableRepository((PointTableManager(LocalJson(requireContext()))))) as T
             }
-        }).get(MatchDetailsViewModel::class.java)
+        }).get(PointTableViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +50,7 @@ class MatchDetailsFragment : Fragment() {
     }
 
     private fun attachMatchDetailsObserver() {
-        viewModel.state()
+        viewModel.matchDetailState()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 render(it)
