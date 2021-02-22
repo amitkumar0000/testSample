@@ -1,7 +1,7 @@
 package com.ecom.ui.startwar.datasource
 
-import com.ecom.ui.startwar.models.MatchDetails
-import com.ecom.ui.startwar.models.Player
+import com.ecom.ui.startwar.datasource.models.MatchDetails
+import com.ecom.ui.startwar.datasource.models.Player
 import com.ecom.ui.startwar.utils.Utils
 import io.reactivex.Single
 

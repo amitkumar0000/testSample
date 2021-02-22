@@ -1,7 +1,7 @@
 package com.ecom.ui.startwar.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ecom.ui.startwar.models.Player
+import com.ecom.ui.startwar.datasource.models.Player
 
 class PointTablesDiffUtils(private val oldPlayer: List<Player>, private val newPlayer: List<Player>): DiffUtil.Callback() {
     override fun getOldListSize() = oldPlayer.size

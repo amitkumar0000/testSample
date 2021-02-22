@@ -1,4 +1,4 @@
-package com.ecom.ui.startwar.models
+package com.ecom.ui.startwar.datasource.models
 
 sealed class PointTableFeedState {
     object Loading: PointTableFeedState()

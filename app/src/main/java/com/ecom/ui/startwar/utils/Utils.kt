@@ -1,7 +1,7 @@
 package com.ecom.ui.startwar.utils
 
 import android.content.Context
-import com.ecom.ui.startwar.models.Player
+import com.ecom.ui.startwar.datasource.models.Player
 import org.json.JSONArray
 import java.lang.IllegalStateException
 

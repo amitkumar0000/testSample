@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ecom.ui.databinding.MatchesRowBinding
-import com.ecom.ui.startwar.models.MatchDetails
+import com.ecom.ui.startwar.datasource.models.MatchDetails
 import com.ecom.ui.startwar.viewholder.MatchSummaryViewHolder
 
 class MatchDetailsAdapter : RecyclerView.Adapter<MatchSummaryViewHolder>() {

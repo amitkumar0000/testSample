@@ -1,8 +1,8 @@
 package com.ecom.ui.startwar.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.ecom.ui.startwar.models.MatchDetailsFeedState
-import com.ecom.ui.startwar.models.PointTableFeedState
+import com.ecom.ui.startwar.datasource.models.MatchDetailsFeedState
+import com.ecom.ui.startwar.datasource.models.PointTableFeedState
 import com.ecom.ui.startwar.repository.PointTableRepository
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable

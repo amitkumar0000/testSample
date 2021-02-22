@@ -1,7 +1,7 @@
 package com.ecom.ui.startwar.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.ecom.ui.startwar.models.MatchDetails
+import com.ecom.ui.startwar.datasource.models.MatchDetails
 
 class MatchDetailsDiffUtils(private val oldDetails: List<MatchDetails>, private val newDetails: List<MatchDetails>): DiffUtil.Callback() {
     override fun getOldListSize() = oldDetails.size

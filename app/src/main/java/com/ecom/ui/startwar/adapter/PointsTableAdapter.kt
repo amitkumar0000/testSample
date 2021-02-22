@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ecom.ui.databinding.PointRowBinding
-import com.ecom.ui.startwar.models.Player
+import com.ecom.ui.startwar.datasource.models.Player
 import com.ecom.ui.startwar.utils.Utils
 import com.ecom.ui.startwar.utils.Utils.playerList
 import com.ecom.ui.startwar.viewholder.PointTableViewHolder

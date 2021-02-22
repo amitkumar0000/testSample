@@ -1,4 +1,4 @@
-package com.ecom.ui.startwar.models
+package com.ecom.ui.startwar.datasource.models
 
 data class TournamentDetails(val match: Int, val player1: Player1, val player2: Player2)
 

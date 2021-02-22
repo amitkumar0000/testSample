@@ -12,7 +12,7 @@ import com.ecom.ui.databinding.FragmentMatchDetailsBinding
 import com.ecom.ui.startwar.adapter.MatchDetailsAdapter
 import com.ecom.ui.startwar.datasource.LocalJson
 import com.ecom.ui.startwar.datasource.PointTableManager
-import com.ecom.ui.startwar.models.MatchDetailsFeedState
+import com.ecom.ui.startwar.datasource.models.MatchDetailsFeedState
 import com.ecom.ui.startwar.repository.PointTableRepository
 import com.ecom.ui.startwar.viewmodel.PointTableViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
